@@ -209,10 +209,10 @@ def demo_mode():
     
     st.markdown("---")
     st.markdown("### 🖥️ Dashboard Preview (Production)")
-    # Replace placeholder image with a clean textual representation
+    # Strong white text in the ASCII dashboard
     st.markdown("""
     <div class="dashboard-preview">
-    <pre style="color:#00d4ff; margin:0;">
+    <pre style="color: white; font-weight: bold; background: #1e1e2e; padding: 1rem; border-radius: 12px; font-family: monospace; font-size: 14px;">
     ┌─────────────────────────────────────────────────────────────────────┐
     │  Industrial Automation OS – PRODUCTION DASHBOARD                    │
     │  🟢 Connected to: OPC UA | MQTT | ROS                               │
