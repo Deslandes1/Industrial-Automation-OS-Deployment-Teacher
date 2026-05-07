@@ -28,6 +28,7 @@ st.markdown("""
         color: #0a0f1a !important;
         border-radius: 30px !important;
         font-weight: bold !important;
+        width: 100%;
     }
     .stButton button:hover {
         background-color: #ffaa33 !important;
@@ -61,6 +62,16 @@ st.markdown("""
         padding: 1rem;
         border: 1px solid #00d4ff;
         font-family: monospace;
+    }
+    /* Force bright white text for the preview */
+    .dashboard-pre {
+        color: #ffffff !important;
+        font-weight: bold !important;
+        background: #1e1e2e;
+        padding: 1rem;
+        border-radius: 12px;
+        font-family: monospace;
+        font-size: 14px;
     }
     h1, h2, h3 {
         color: #00d4ff !important;
@@ -111,7 +122,7 @@ def show_login():
             <p style="color:#d0d0d0;">Enter password to access deployment training</p>
     """, unsafe_allow_html=True)
     password = st.text_input("Password", type="password", key="login_pass")
-    if st.button("🔐 Enter", use_container_width=True):
+    if st.button("🔐 Login", width="stretch"):
         if password == "20082010":
             st.session_state.authenticated = True
             st.rerun()
@@ -151,7 +162,7 @@ def show_sidebar():
     """)
     st.sidebar.info("✅ Includes OPC UA, MQTT, ROS integration, 24/7 support, and deployment assistance.")
     st.sidebar.markdown("---")
-    if st.sidebar.button("🔓 Logout", use_container_width=True):
+    if st.sidebar.button("🔓 Logout", width="stretch"):
         logout()
     return mode
 
@@ -189,12 +200,12 @@ def demo_mode():
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("▶️ Next Step"):
+        if st.button("▶️ Next Step", width="stretch"):
             if st.session_state.deploy_step < len(steps):
                 st.session_state.deploy_step += 1
                 st.rerun()
     with col2:
-        if st.button("⟳ Reset"):
+        if st.button("⟳ Reset", width="stretch"):
             st.session_state.deploy_step = 0
             st.rerun()
     
@@ -209,10 +220,10 @@ def demo_mode():
     
     st.markdown("---")
     st.markdown("### 🖥️ Dashboard Preview (Production)")
-    # Strong white text in the ASCII dashboard
+    # Use a separate class with !important to force white color
     st.markdown("""
     <div class="dashboard-preview">
-    <pre style="color: white; font-weight: bold; background: #1e1e2e; padding: 1rem; border-radius: 12px; font-family: monospace; font-size: 14px;">
+    <pre class="dashboard-pre">
     ┌─────────────────────────────────────────────────────────────────────┐
     │  Industrial Automation OS – PRODUCTION DASHBOARD                    │
     │  🟢 Connected to: OPC UA | MQTT | ROS                               │
