@@ -63,16 +63,6 @@ st.markdown("""
         border: 1px solid #00d4ff;
         font-family: monospace;
     }
-    /* Force bright white text for the preview */
-    .dashboard-pre {
-        color: #ffffff !important;
-        font-weight: bold !important;
-        background: #1e1e2e;
-        padding: 1rem;
-        border-radius: 12px;
-        font-family: monospace;
-        font-size: 14px;
-    }
     h1, h2, h3 {
         color: #00d4ff !important;
     }
@@ -220,10 +210,10 @@ def demo_mode():
     
     st.markdown("---")
     st.markdown("### 🖥️ Dashboard Preview (Production)")
-    # Use a separate class with !important to force white color
+    # Inline style forces bright white text
     st.markdown("""
     <div class="dashboard-preview">
-    <pre class="dashboard-pre">
+    <pre style="color: #ffffff !important; font-weight: bold !important; background: #1e1e2e; padding: 1rem; border-radius: 12px; font-family: monospace; font-size: 14px;">
     ┌─────────────────────────────────────────────────────────────────────┐
     │  Industrial Automation OS – PRODUCTION DASHBOARD                    │
     │  🟢 Connected to: OPC UA | MQTT | ROS                               │
