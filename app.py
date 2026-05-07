@@ -55,6 +55,13 @@ st.markdown("""
         border-radius: 8px;
         margin: 1rem 0;
     }
+    .dashboard-preview {
+        background: #0f172a;
+        border-radius: 20px;
+        padding: 1rem;
+        border: 1px solid #00d4ff;
+        font-family: monospace;
+    }
     h1, h2, h3 {
         color: #00d4ff !important;
     }
@@ -148,7 +155,7 @@ def show_sidebar():
         logout()
     return mode
 
-# ---------- DEMO MODE (interactive simulation) ----------
+# ---------- DEMO MODE (simulation) ----------
 def demo_mode():
     st.markdown("<h1 style='text-align:center;'>🏭 IA OS – Deployment Simulator</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center;'>Click through the steps to see how the production version would be installed on your server.</p>", unsafe_allow_html=True)
@@ -165,7 +172,6 @@ def demo_mode():
         "7️⃣ Connect robots via OPC UA / MQTT / ROS"
     ]
     
-    # Store step index in session state for simulation
     if "deploy_step" not in st.session_state:
         st.session_state.deploy_step = 0
     
@@ -203,8 +209,30 @@ def demo_mode():
     
     st.markdown("---")
     st.markdown("### 🖥️ Dashboard Preview (Production)")
-    st.image("https://via.placeholder.com/800x400?text=Dashboard+with+Live+Robot+Data", use_container_width=True)
-    st.caption("This is what you would see after installation – real metrics from your own equipment.")
+    # Replace placeholder image with a clean textual representation
+    st.markdown("""
+    <div class="dashboard-preview">
+    <pre style="color:#00d4ff; margin:0;">
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  Industrial Automation OS – PRODUCTION DASHBOARD                    │
+    │  🟢 Connected to: OPC UA | MQTT | ROS                               │
+    ├─────────────────────────────────────────────────────────────────────┤
+    │  🤖 Robot Speed          📦 Conveyor Belt       🔍 AI Inspection     │
+    │  ████████████░░░ 75%     [●] Running           [▓▓▓▓▓▓▓▓▓░] 96%     │
+    │  Current: 75%            Status: Active        Defects: 3           │
+    ├─────────────────────────────────────────────────────────────────────┤
+    │  Live Factory Metrics                                              │
+    │  Throughput: 98 u/h     Energy: 128 kWh       AI Confidence: 97%   │
+    ├─────────────────────────────────────────────────────────────────────┤
+    │  Event Log                                                         │
+    │  13:45:22 - Robot speed changed to 75% (OPC UA)                    │
+    │  13:45:23 - Conveyor speed adjusted (MQTT)                         │
+    │  13:45:30 - Defect detected at Camera 2 (AI model)                 │
+    └─────────────────────────────────────────────────────────────────────┘
+    </pre>
+    <p style="color:#d0d0d0;">This is a simulation of the production dashboard. Real data varies based on your hardware.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ---------- REAL‑LIFE PRACTICE MODE ----------
 def practice_mode():
